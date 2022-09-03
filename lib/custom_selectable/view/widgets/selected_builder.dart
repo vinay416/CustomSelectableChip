@@ -2,8 +2,8 @@ import 'package:custom_chip/custom_selectable/view_model/custom_selectable_view_
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SelectedChips extends StatelessWidget {
-  const SelectedChips({Key? key}) : super(key: key);
+class SelectedBuilder extends StatelessWidget {
+  const SelectedBuilder({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

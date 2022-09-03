@@ -1,9 +1,11 @@
+import 'package:custom_chip/custom_selectable/view/widgets/suggestion_chip.dart';
 import 'package:custom_chip/custom_selectable/view_model/custom_selectable_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:transparent_pointer/transparent_pointer.dart';
 
-class SuggestionWidget extends StatelessWidget {
-  const SuggestionWidget({
+class SuggestionBuilder extends StatelessWidget {
+  const SuggestionBuilder({
     Key? key,
   }) : super(key: key);
 
@@ -23,16 +25,10 @@ class SuggestionWidget extends StatelessWidget {
             alignment: Alignment.topLeft,
             color: Colors.blue,
             child: Wrap(
-                children: viewModel.suggestions
-                    .map(
-                      (skill) => GestureDetector(
-                        onTap: () {
-                          viewModel.addSkill(skill);
-                        },
-                        child: Chip(label: Text(skill.skill)),
-                      ),
-                    )
-                    .toList()),
+              children: viewModel.suggestions
+                  .map((skill) => SuggestionChip(skill: skill))
+                  .toList(),
+            ),
           ),
         );
       },

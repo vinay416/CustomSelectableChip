@@ -1,5 +1,5 @@
-import 'package:custom_chip/custom_selectable/view/widgets/selected_chips.dart';
-import 'package:custom_chip/custom_selectable/view/widgets/suggestion_widget.dart';
+import 'package:custom_chip/custom_selectable/view/widgets/selected_builder.dart';
+import 'package:custom_chip/custom_selectable/view/widgets/suggestion_builder.dart';
 import 'package:custom_chip/custom_selectable/view_model/custom_selectable_view_model.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +33,9 @@ class _TextFiledChipState extends State<TextFiledChip> {
     return Stack(
       clipBehavior: Clip.none,
       children: [
+        GestureDetector(
+          behavior: HitTestBehavior.opaque,
+        ),
         TextField(
           focusNode: _focus,
           controller: _editingController,
@@ -42,8 +45,8 @@ class _TextFiledChipState extends State<TextFiledChip> {
             ),
           ),
         ),
-        const SelectedChips(),
-        const SuggestionWidget()
+        const SelectedBuilder(),
+        const SuggestionBuilder()
       ],
     );
   }
