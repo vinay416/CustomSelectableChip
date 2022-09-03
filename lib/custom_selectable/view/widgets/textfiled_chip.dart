@@ -36,16 +36,21 @@ class _TextFiledChipState extends State<TextFiledChip> {
         GestureDetector(
           behavior: HitTestBehavior.opaque,
         ),
-        TextField(
-          focusNode: _focus,
-          controller: _editingController,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.black),
+        Row(
+          children: [
+            const SelectedBuilder(),
+            Expanded(
+              child: TextField(
+                focusNode: _focus,
+                controller: _editingController,
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.only(left: 10),
+                  border: InputBorder.none,
+                ),
+              ),
             ),
-          ),
+          ],
         ),
-        const SelectedBuilder(),
         const SuggestionBuilder()
       ],
     );
