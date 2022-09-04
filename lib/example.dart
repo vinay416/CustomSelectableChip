@@ -10,7 +10,12 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Example"),
       ),
-      body: const CustomSelectable(),
+      body: Container(
+        margin: const EdgeInsets.only(top: 20),
+        child: const CustomSelectable(
+          horizontalMargin: 20,
+        ),
+      ),
     );
   }
 }

@@ -5,21 +5,29 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CustomSelectable extends StatelessWidget {
-  const CustomSelectable({Key? key}) : super(key: key);
+  const CustomSelectable({this.horizontalMargin = 0, Key? key})
+      : super(key: key);
+  final double horizontalMargin;
 
   @override
   Widget build(BuildContext context) {
     final viewModel = context.read<CustomSelectableViewModel>();
 
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        GestureDetector(
-          behavior: HitTestBehavior.opaque,
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: horizontalMargin),
+      child: ClipRRect(
+        clipBehavior: Clip.hardEdge,
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+            ),
+            SelectedBuilder(viewModel: viewModel),
+            SuggestionBuilder(horizontalMargin: horizontalMargin),
+          ],
         ),
-        SelectedBuilder(viewModel: viewModel),
-        const SuggestionBuilder()
-      ],
+      ),
     );
   }
 }

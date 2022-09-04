@@ -5,8 +5,11 @@ import 'package:provider/provider.dart';
 
 class SuggestionBuilder extends StatelessWidget {
   const SuggestionBuilder({
+    required this.horizontalMargin,
     Key? key,
   }) : super(key: key);
+
+  final double horizontalMargin;
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +20,13 @@ class SuggestionBuilder extends StatelessWidget {
         }
 
         return Positioned(
-          top: 55,
+          top: 58,
           height: 200,
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery.of(context).size.width *
+              (100 / (80 + horizontalMargin)),
           child: Container(
             alignment: Alignment.topLeft,
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             color: Colors.blue,
             child: SingleChildScrollView(
               child: Wrap(
