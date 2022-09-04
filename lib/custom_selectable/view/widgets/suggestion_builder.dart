@@ -2,7 +2,6 @@ import 'package:custom_chip/custom_selectable/view/widgets/suggestion_chip.dart'
 import 'package:custom_chip/custom_selectable/view_model/custom_selectable_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:transparent_pointer/transparent_pointer.dart';
 
 class SuggestionBuilder extends StatelessWidget {
   const SuggestionBuilder({
@@ -18,16 +17,19 @@ class SuggestionBuilder extends StatelessWidget {
         }
 
         return Positioned(
-          top: 60,
+          top: 55,
           height: 200,
-          width: 500,
+          width: MediaQuery.of(context).size.width,
           child: Container(
             alignment: Alignment.topLeft,
+            padding: const EdgeInsets.all(10),
             color: Colors.blue,
-            child: Wrap(
-              children: viewModel.suggestions
-                  .map((skill) => SuggestionChip(skill: skill))
-                  .toList(),
+            child: SingleChildScrollView(
+              child: Wrap(
+                children: viewModel.suggestions
+                    .map((skill) => SuggestionChip(skill: skill))
+                    .toList(),
+              ),
             ),
           ),
         );

@@ -1,3 +1,5 @@
+import 'package:custom_chip/custom_selectable/view/widgets/selected_chip.dart';
+import 'package:custom_chip/custom_selectable/view/widgets/textfield_builder.dart';
 import 'package:custom_chip/custom_selectable/view_model/custom_selectable_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +31,7 @@ class _SelectedBuilderState extends State<SelectedBuilder> {
   Widget build(BuildContext context) {
     return Consumer<CustomSelectableViewModel>(
       builder: (context, viewModel, child) {
-        if (_controller.hasClients) {
+        if (_controller.hasClients && viewModel.selectedSkills.length > 4) {
           _controller.animateTo(
             _controller.position.maxScrollExtent,
             duration: const Duration(milliseconds: 500),
@@ -50,26 +52,16 @@ class _SelectedBuilderState extends State<SelectedBuilder> {
           ),
           child: SingleChildScrollView(
             controller: _controller,
-            padding: const EdgeInsets.only(top: 5),
+            padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
                 ...viewModel.selectedSkills
-                    .map((e) => Chip(label: Text(e.skill)))
+                    .map((e) => SelectedChip(element: e))
                     .toList(),
-                Container(
-                  constraints: BoxConstraints(
-                    minWidth: 100,
-                    maxWidth: MediaQuery.of(context).size.width,
-                  ),
-                  child: TextField(
-                    focusNode: _focus,
-                    controller: _editingController,
-                    decoration: const InputDecoration(
-                      contentPadding: EdgeInsets.only(left: 10),
-                      border: InputBorder.none,
-                    ),
-                  ),
+                TextFieldbuilder(
+                  controller: _editingController,
+                  focus: _focus,
                 ),
               ],
             ),

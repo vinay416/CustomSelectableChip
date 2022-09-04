@@ -1,4 +1,5 @@
 import 'package:custom_chip/custom_selectable/model/skill_model.dart';
+import 'package:custom_chip/custom_selectable/utils/utlis.dart';
 import 'package:custom_chip/custom_selectable/view_model/custom_selectable_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,11 +12,17 @@ class SuggestionChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TransparentPointer(
-      child: InkWell(
-        onTap: () {
-          context.read<CustomSelectableViewModel>().addSkill(skill);
-        },
-        child: Chip(label: Text(skill.skill)),
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10),
+        child: InkWell(
+          onTap: () {
+            context.read<CustomSelectableViewModel>().addSkill(skill);
+          },
+          child: Chip(
+            label: Text(skill.skill),
+            shape: chipBorder,
+          ),
+        ),
       ),
     );
   }
