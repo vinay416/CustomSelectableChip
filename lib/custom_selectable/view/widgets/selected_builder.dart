@@ -1,3 +1,4 @@
+import 'package:custom_chip/custom_selectable/model/skill_model.dart';
 import 'package:custom_chip/custom_selectable/view/widgets/selected_chip.dart';
 import 'package:custom_chip/custom_selectable/view/widgets/textfield_builder.dart';
 import 'package:custom_chip/custom_selectable/view_model/custom_selectable_view_model.dart';
@@ -5,8 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SelectedBuilder extends StatefulWidget {
-  const SelectedBuilder({required this.viewModel, Key? key}) : super(key: key);
+  const SelectedBuilder({
+    required this.viewModel,
+    required this.selectedSills,
+    Key? key,
+  }) : super(key: key);
   final CustomSelectableViewModel viewModel;
+  final Function(List<SkillModel>) selectedSills;
 
   @override
   State<SelectedBuilder> createState() => _SelectedBuilderState();
@@ -31,6 +37,10 @@ class _SelectedBuilderState extends State<SelectedBuilder> {
   Widget build(BuildContext context) {
     return Consumer<CustomSelectableViewModel>(
       builder: (context, viewModel, child) {
+        if (viewModel.selectedSkills.isNotEmpty) {
+          widget.selectedSills(viewModel.selectedSkills);
+        }
+
         if (_controller.hasClients && viewModel.selectedSkills.length > 4) {
           _controller.animateTo(
             _controller.position.maxScrollExtent,

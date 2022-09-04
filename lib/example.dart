@@ -12,8 +12,13 @@ class Home extends StatelessWidget {
       ),
       body: Container(
         margin: const EdgeInsets.only(top: 20),
-        child: const CustomSelectable(
+        child: CustomSelectable(
           horizontalMargin: 20,
+          selectedSills: (list) {
+            for (var element in list) {
+              debugPrint(element.skill);
+            }
+          },
         ),
       ),
     );
