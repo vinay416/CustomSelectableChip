@@ -1,4 +1,5 @@
 import 'package:custom_chip/custom_selectable/model/skill_model.dart';
+import 'package:custom_chip/custom_selectable/utils/utlis.dart';
 import 'package:custom_chip/custom_selectable/view/widgets/selected_chip.dart';
 import 'package:custom_chip/custom_selectable/view/widgets/textfield_builder.dart';
 import 'package:custom_chip/custom_selectable/view_model/custom_selectable_view_model.dart';
@@ -9,10 +10,18 @@ class SelectedBuilder extends StatefulWidget {
   const SelectedBuilder({
     required this.viewModel,
     required this.selectedSills,
+    this.backgroundColor,
+    this.deleteIcon,
+    this.deleteIconColor,
+    this.textStyle,
     Key? key,
   }) : super(key: key);
   final CustomSelectableViewModel viewModel;
   final Function(List<SkillModel>) selectedSills;
+  final Color? backgroundColor;
+  final TextStyle? textStyle;
+  final Color? deleteIconColor;
+  final IconData? deleteIcon;
 
   @override
   State<SelectedBuilder> createState() => _SelectedBuilderState();
@@ -58,16 +67,23 @@ class _SelectedBuilderState extends State<SelectedBuilder> {
         }
         return Container(
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.blueAccent),
+            border: boderDecoration,
+            borderRadius: borderRadius,
           ),
           child: SingleChildScrollView(
             controller: _controller,
-            padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
                 ...viewModel.selectedSkills
-                    .map((e) => SelectedChip(element: e))
+                    .map((e) => SelectedChip(
+                          element: e,
+                          backgroundColor: widget.backgroundColor,
+                          deleteIcon: widget.deleteIcon,
+                          deleteIconColor: widget.deleteIconColor,
+                          textStyle: widget.textStyle,
+                        ))
                     .toList(),
                 TextFieldbuilder(
                   controller: _editingController,

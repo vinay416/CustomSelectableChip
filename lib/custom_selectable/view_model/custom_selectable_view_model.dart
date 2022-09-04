@@ -27,6 +27,7 @@ class CustomSelectableViewModel extends ChangeNotifier {
       for (var skill in _allSkills) {
         _suggestions.add(skill);
       }
+      _suggestions.sort(_sort);
     } else {
       final String query = text.toLowerCase();
 
@@ -41,6 +42,10 @@ class CustomSelectableViewModel extends ChangeNotifier {
       for (var skill in suggestion) {
         _suggestions.add(skill);
       }
+    }
+
+    for (var skill in _selected) {
+      _suggestions.removeWhere((element) => element.id == skill.id);
     }
 
     notifyListeners();

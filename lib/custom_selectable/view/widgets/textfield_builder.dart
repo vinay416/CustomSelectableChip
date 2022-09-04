@@ -20,7 +20,7 @@ class TextFieldbuilder extends StatelessWidget {
         focusNode: focus,
         controller: controller,
         decoration: const InputDecoration(
-          contentPadding: EdgeInsets.only(left: 10),
+          contentPadding: EdgeInsets.only(left: 5),
           border: InputBorder.none,
         ),
       ),

@@ -6,8 +6,15 @@ import 'package:provider/provider.dart';
 import 'package:transparent_pointer/transparent_pointer.dart';
 
 class SuggestionChip extends StatelessWidget {
-  const SuggestionChip({required this.skill, Key? key}) : super(key: key);
+  const SuggestionChip({
+    required this.skill,
+    this.backgroundColor,
+    this.textStyle,
+    Key? key,
+  }) : super(key: key);
   final SkillModel skill;
+  final Color? backgroundColor;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +26,12 @@ class SuggestionChip extends StatelessWidget {
             context.read<CustomSelectableViewModel>().addSkill(skill);
           },
           child: Chip(
-            label: Text(skill.skill),
+            label: Text(
+              skill.skill,
+              style: textStyle ?? chipTextStyle,
+            ),
             shape: chipBorder,
+            backgroundColor: backgroundColor ?? chipBackgroundColor,
           ),
         ),
       ),

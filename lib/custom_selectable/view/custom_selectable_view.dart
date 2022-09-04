@@ -9,10 +9,18 @@ class CustomSelectable extends StatelessWidget {
   const CustomSelectable({
     required this.selectedSills,
     this.horizontalMargin = 0,
+    this.backgroundColor,
+    this.deleteIcon,
+    this.deleteIconColor,
+    this.textStyle,
     Key? key,
   }) : super(key: key);
   final double horizontalMargin;
   final Function(List<SkillModel>) selectedSills;
+  final Color? backgroundColor;
+  final TextStyle? textStyle;
+  final Color? deleteIconColor;
+  final IconData? deleteIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +36,19 @@ class CustomSelectable extends StatelessWidget {
             GestureDetector(
               behavior: HitTestBehavior.opaque,
             ),
-            SelectedBuilder(viewModel: viewModel, selectedSills: selectedSills),
-            SuggestionBuilder(horizontalMargin: horizontalMargin),
+            SelectedBuilder(
+              viewModel: viewModel,
+              selectedSills: selectedSills,
+              backgroundColor: backgroundColor,
+              deleteIcon: deleteIcon,
+              deleteIconColor: deleteIconColor,
+              textStyle: textStyle,
+            ),
+            SuggestionBuilder(
+              horizontalMargin: horizontalMargin,
+              backgroundColor: backgroundColor,
+              textStyle: textStyle,
+            ),
           ],
         ),
       ),
