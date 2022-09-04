@@ -28,29 +28,26 @@ class CustomSelectable extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.symmetric(horizontal: horizontalMargin),
-      child: ClipRRect(
-        clipBehavior: Clip.hardEdge,
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            GestureDetector(
-              behavior: HitTestBehavior.opaque,
-            ),
-            SelectedBuilder(
-              viewModel: viewModel,
-              selectedSills: selectedSills,
-              backgroundColor: backgroundColor,
-              deleteIcon: deleteIcon,
-              deleteIconColor: deleteIconColor,
-              textStyle: textStyle,
-            ),
-            SuggestionBuilder(
-              horizontalMargin: horizontalMargin,
-              backgroundColor: backgroundColor,
-              textStyle: textStyle,
-            ),
-          ],
-        ),
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+          ),
+          SelectedBuilder(
+            viewModel: viewModel,
+            selectedSills: selectedSills,
+            backgroundColor: backgroundColor,
+            deleteIcon: deleteIcon,
+            deleteIconColor: deleteIconColor,
+            textStyle: textStyle,
+          ),
+          SuggestionBuilder(
+            horizontalMargin: horizontalMargin,
+            backgroundColor: backgroundColor,
+            textStyle: textStyle,
+          ),
+        ],
       ),
     );
   }
