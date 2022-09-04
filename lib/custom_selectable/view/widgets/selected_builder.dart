@@ -10,6 +10,7 @@ class SelectedBuilder extends StatefulWidget {
   const SelectedBuilder({
     required this.viewModel,
     required this.selectedSills,
+    required this.apiUrl,
     this.backgroundColor,
     this.deleteIcon,
     this.deleteIconColor,
@@ -18,6 +19,7 @@ class SelectedBuilder extends StatefulWidget {
   }) : super(key: key);
   final CustomSelectableViewModel viewModel;
   final Function(List<SkillModel>) selectedSills;
+  final String apiUrl;
   final Color? backgroundColor;
   final TextStyle? textStyle;
   final Color? deleteIconColor;
@@ -34,7 +36,7 @@ class _SelectedBuilderState extends State<SelectedBuilder> {
 
   @override
   void initState() {
-    widget.viewModel.fetchSkills();
+    widget.viewModel.fetchSkills(widget.apiUrl);
     _focus.addListener(() => widget.viewModel.focusListener(_focus.hasFocus));
     _editingController.addListener(
         () => widget.viewModel.suggestionListener(_editingController.text));

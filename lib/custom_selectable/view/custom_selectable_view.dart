@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 class CustomSelectable extends StatelessWidget {
   const CustomSelectable({
     required this.selectedSills,
+    required this.apiUrl,
     this.horizontalMargin = 0,
     this.backgroundColor,
     this.deleteIcon,
@@ -17,6 +18,7 @@ class CustomSelectable extends StatelessWidget {
   }) : super(key: key);
   final double horizontalMargin;
   final Function(List<SkillModel>) selectedSills;
+  final String apiUrl;
   final Color? backgroundColor;
   final TextStyle? textStyle;
   final Color? deleteIconColor;
@@ -36,6 +38,7 @@ class CustomSelectable extends StatelessWidget {
           ),
           SelectedBuilder(
             viewModel: viewModel,
+            apiUrl: apiUrl,
             selectedSills: selectedSills,
             backgroundColor: backgroundColor,
             deleteIcon: deleteIcon,

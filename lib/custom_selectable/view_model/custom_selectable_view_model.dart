@@ -10,7 +10,7 @@ class CustomSelectableViewModel extends ChangeNotifier {
 
   bool isFocused = false;
 
-  Future<void> fetchSkills() async {
+  Future<void> fetchSkills(String apiUrl) async {
     await Future.delayed(const Duration(seconds: 1));
 
     for (var i = 0; i < 20; i++) {

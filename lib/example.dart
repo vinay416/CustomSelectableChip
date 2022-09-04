@@ -14,6 +14,7 @@ class Home extends StatelessWidget {
         margin: const EdgeInsets.only(top: 20),
         child: CustomSelectable(
           horizontalMargin: 10,
+          apiUrl: "",
           selectedSills: (list) {
             for (var element in list) {
               debugPrint(element.skill);
