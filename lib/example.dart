@@ -14,7 +14,7 @@ class Home extends StatelessWidget {
         margin: const EdgeInsets.only(top: 20),
         child: CustomSelectable(
           horizontalMargin: 10,
-          apiUrl: "",
+          apiUrl: "https://mocki.io/v1/b666bc83-f329-44e1-aee6-cc4354fa1eb9",
           selectedSills: (list) {
             for (var element in list) {
               debugPrint(element.skill);

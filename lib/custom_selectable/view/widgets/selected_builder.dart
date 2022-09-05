@@ -52,7 +52,7 @@ class _SelectedBuilderState extends State<SelectedBuilder> {
           widget.selectedSills(viewModel.selectedSkills);
         }
 
-        if (_controller.hasClients && viewModel.selectedSkills.length > 4) {
+        if (_controller.hasClients && viewModel.selectedSkills.length > 3) {
           _controller.animateTo(
             _controller.position.maxScrollExtent,
             duration: const Duration(milliseconds: 500),

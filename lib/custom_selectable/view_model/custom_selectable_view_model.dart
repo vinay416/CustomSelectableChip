@@ -1,8 +1,9 @@
 import 'package:custom_chip/custom_selectable/model/skill_model.dart';
+import 'package:custom_chip/custom_selectable/web_services/custom_selectable_repo.dart';
 import 'package:flutter/cupertino.dart';
 
 class CustomSelectableViewModel extends ChangeNotifier {
-  final List<SkillModel> _allSkills = [];
+  late List<SkillModel> _allSkills;
 
   final List<SkillModel> _suggestions = [];
 
@@ -11,10 +12,13 @@ class CustomSelectableViewModel extends ChangeNotifier {
   bool isFocused = false;
 
   Future<void> fetchSkills(String apiUrl) async {
-    await Future.delayed(const Duration(seconds: 1));
+    final List<SkillModel>? list =
+        await CustomSelectableRepo().getSkills(apiUrl);
 
-    for (var i = 0; i < 20; i++) {
-      _allSkills.add(SkillModel(id: "$i", skill: "skill $i"));
+    if (list != null) {
+      _allSkills = list;
+    } else {
+      _allSkills = [];
     }
 
     notifyListeners();
@@ -62,7 +66,7 @@ class CustomSelectableViewModel extends ChangeNotifier {
 
   void deleteSkill(SkillModel skillModel) {
     _selected.removeWhere((skill) => skill.id == skillModel.id);
-    _suggestions.insert(int.parse(skillModel.id), skillModel);
+    _suggestions.add(skillModel);
     _suggestions.sort(_sort);
     notifyListeners();
   }
