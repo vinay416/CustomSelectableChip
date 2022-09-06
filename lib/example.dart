@@ -1,4 +1,4 @@
-import 'package:custom_chip/custom_selectable/view/custom_selectable_view.dart';
+import 'package:custom_chip/custom_selectable/ui/custom_selectable_ui.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {

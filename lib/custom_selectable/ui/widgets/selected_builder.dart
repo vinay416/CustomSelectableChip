@@ -1,7 +1,7 @@
 import 'package:custom_chip/custom_selectable/model/skill_model.dart';
 import 'package:custom_chip/custom_selectable/utils/utlis.dart';
-import 'package:custom_chip/custom_selectable/view/widgets/selected_chip.dart';
-import 'package:custom_chip/custom_selectable/view/widgets/textfield_builder.dart';
+import 'package:custom_chip/custom_selectable/ui/widgets/selected_chip.dart';
+import 'package:custom_chip/custom_selectable/ui/widgets/textfield_builder.dart';
 import 'package:custom_chip/custom_selectable/view_model/custom_selectable_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
