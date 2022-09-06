@@ -26,7 +26,7 @@ class SuggestionBuilder extends StatelessWidget {
 
         return Positioned(
           top: 50,
-          height: 200,
+          height: 90,
           width: MediaQuery.of(context).size.width - (horizontalMargin * 2),
           child: Material(
             elevation: 5.0,

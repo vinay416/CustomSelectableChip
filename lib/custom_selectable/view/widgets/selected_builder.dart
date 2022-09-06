@@ -12,8 +12,6 @@ class SelectedBuilder extends StatefulWidget {
     required this.selectedSills,
     required this.apiUrl,
     this.backgroundColor,
-    this.deleteIcon,
-    this.deleteIconColor,
     this.textStyle,
     Key? key,
   }) : super(key: key);
@@ -22,8 +20,6 @@ class SelectedBuilder extends StatefulWidget {
   final String apiUrl;
   final Color? backgroundColor;
   final TextStyle? textStyle;
-  final Color? deleteIconColor;
-  final IconData? deleteIcon;
 
   @override
   State<SelectedBuilder> createState() => _SelectedBuilderState();
@@ -82,8 +78,6 @@ class _SelectedBuilderState extends State<SelectedBuilder> {
                     .map((e) => SelectedChip(
                           element: e,
                           backgroundColor: widget.backgroundColor,
-                          deleteIcon: widget.deleteIcon,
-                          deleteIconColor: widget.deleteIconColor,
                           textStyle: widget.textStyle,
                         ))
                     .toList(),

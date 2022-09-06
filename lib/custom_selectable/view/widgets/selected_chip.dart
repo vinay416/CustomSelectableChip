@@ -9,19 +9,16 @@ class SelectedChip extends StatelessWidget {
     required this.element,
     this.backgroundColor,
     this.textStyle,
-    this.deleteIconColor,
-    this.deleteIcon,
     Key? key,
   }) : super(key: key);
   final SkillModel element;
   final Color? backgroundColor;
   final TextStyle? textStyle;
-  final Color? deleteIconColor;
-  final IconData? deleteIcon;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      // height: 22,
       margin: const EdgeInsets.only(right: 10),
       child: Chip(
         label: Text(
@@ -30,9 +27,14 @@ class SelectedChip extends StatelessWidget {
         ),
         backgroundColor: backgroundColor ?? chipBackgroundColor,
         shape: chipBorder,
-        deleteIcon: Icon(
-          deleteIcon ?? Icons.clear,
-          color: deleteIconColor ?? Colors.blue,
+        deleteIcon: const CircleAvatar(
+          radius: 8,
+          backgroundColor: deleteIconColor,
+          child: Icon(
+            Icons.clear,
+            color: Colors.white,
+            size: 12,
+          ),
         ),
         onDeleted: () {
           context.read<CustomSelectableViewModel>().deleteSkill(element);

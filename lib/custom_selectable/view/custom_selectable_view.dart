@@ -41,8 +41,6 @@ class CustomSelectable extends StatelessWidget {
             apiUrl: apiUrl,
             selectedSills: selectedSills,
             backgroundColor: backgroundColor,
-            deleteIcon: deleteIcon,
-            deleteIconColor: deleteIconColor,
             textStyle: textStyle,
           ),
           SuggestionBuilder(
