@@ -12,14 +12,10 @@ class CustomSelectableViewModel extends ChangeNotifier {
   bool isFocused = false;
 
   Future<void> fetchSkills(String apiUrl) async {
-    final List<SkillModel>? list =
+    final List<SkillModel> list =
         await CustomSelectableRepo().getSkills(apiUrl);
 
-    if (list != null) {
-      _allSkills = list;
-    } else {
-      _allSkills = [];
-    }
+    _allSkills = list;
 
     notifyListeners();
   }

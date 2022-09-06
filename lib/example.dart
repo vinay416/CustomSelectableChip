@@ -13,8 +13,8 @@ class Home extends StatelessWidget {
       body: Container(
         margin: const EdgeInsets.only(top: 20),
         child: CustomSelectable(
-          horizontalMargin: 10,
-          apiUrl: "https://mocki.io/v1/b666bc83-f329-44e1-aee6-cc4354fa1eb9",
+          horizontalMargin: 20,
+          apiUrl: "https://dev.elred.io/getSkills",
           selectedSills: (list) {
             for (var element in list) {
               debugPrint(element.skill);
