@@ -16,7 +16,6 @@ class CustomSelectableRepo {
         final List<dynamic> skills = data["result"];
         final List<SkillModel> list =
             skills.map((e) => SkillModel.fromJson(e)).toList();
-
         return list;
       }
       return [];

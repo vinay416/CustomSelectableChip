@@ -27,6 +27,7 @@ class CustomSelectable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.read<CustomSelectableViewModel>();
+    viewModel.fetchSkills(apiUrl);
 
     return Container(
       margin: EdgeInsets.symmetric(horizontal: horizontalMargin),

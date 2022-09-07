@@ -14,7 +14,7 @@ class TextFieldbuilder extends StatelessWidget {
     return Container(
       // height: 40,
       constraints: BoxConstraints(
-        minWidth: 100,
+        // minWidth: 100,
         maxWidth: MediaQuery.of(context).size.width,
       ),
       child: TextField(

@@ -32,7 +32,6 @@ class _SelectedBuilderState extends State<SelectedBuilder> {
 
   @override
   void initState() {
-    widget.viewModel.fetchSkills(widget.apiUrl);
     _focus.addListener(() => widget.viewModel.focusListener(_focus.hasFocus));
     _editingController.addListener(
         () => widget.viewModel.suggestionListener(_editingController.text));
@@ -48,7 +47,7 @@ class _SelectedBuilderState extends State<SelectedBuilder> {
           widget.selectedSills(viewModel.selectedSkills);
         }
 
-        if (_controller.hasClients && viewModel.selectedSkills.length > 3) {
+        if (_controller.hasClients && viewModel.selectedSkills.length >= 3) {
           _controller.animateTo(
             _controller.position.maxScrollExtent,
             duration: const Duration(milliseconds: 500),

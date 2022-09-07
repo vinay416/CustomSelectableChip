@@ -14,7 +14,6 @@ class CustomSelectableViewModel extends ChangeNotifier {
   Future<void> fetchSkills(String apiUrl) async {
     final List<SkillModel> list =
         await CustomSelectableRepo().getSkills(apiUrl);
-
     _allSkills.addAll(list);
     if (_allSkills.isNotEmpty) {
       _suggestions.addAll(_allSkills);
