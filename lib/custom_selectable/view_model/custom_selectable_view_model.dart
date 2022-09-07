@@ -3,7 +3,7 @@ import 'package:custom_chip/custom_selectable/web_services/custom_selectable_rep
 import 'package:flutter/cupertino.dart';
 
 class CustomSelectableViewModel extends ChangeNotifier {
-  late List<SkillModel> _allSkills;
+  final List<SkillModel> _allSkills = [];
 
   final List<SkillModel> _suggestions = [];
 
@@ -15,7 +15,10 @@ class CustomSelectableViewModel extends ChangeNotifier {
     final List<SkillModel> list =
         await CustomSelectableRepo().getSkills(apiUrl);
 
-    _allSkills = list;
+    _allSkills.addAll(list);
+    if (_allSkills.isNotEmpty) {
+      _suggestions.addAll(_allSkills);
+    }
 
     notifyListeners();
   }
