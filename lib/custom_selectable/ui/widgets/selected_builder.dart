@@ -47,21 +47,29 @@ class _SelectedBuilderState extends State<SelectedBuilder> {
           widget.selectedSills(viewModel.selectedSkills);
         }
 
-        if (_controller.hasClients && viewModel.selectedSkills.length >= 3) {
+        if (_controller.hasClients &&
+            viewModel.selectedSkills.length == viewModel.countSelected) {
           _controller.animateTo(
-            _controller.position.maxScrollExtent,
+            _controller.position.maxScrollExtent - 200,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.fastOutSlowIn,
+          );
+        } else if (_controller.hasClients &&
+            viewModel.selectedSkills.length < viewModel.countSelected) {
+          _controller.animateTo(
+            _controller.position.extentAfter - 200,
             duration: const Duration(milliseconds: 500),
             curve: Curves.fastOutSlowIn,
           );
         }
 
-        if (!viewModel.isFocused && _controller.hasClients) {
-          _controller.animateTo(
-            _controller.position.minScrollExtent,
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.fastOutSlowIn,
-          );
-        }
+        // if (!viewModel.isFocused && _controller.hasClients) {
+        //   _controller.animateTo(
+        //     _controller.position.minScrollExtent,
+        //     duration: const Duration(milliseconds: 500),
+        //     curve: Curves.fastOutSlowIn,
+        //   );
+        // }
         return Container(
           decoration: BoxDecoration(
             border: boderDecoration,

@@ -11,6 +11,8 @@ class CustomSelectableViewModel extends ChangeNotifier {
 
   bool isFocused = false;
 
+  int countSelected = 0;
+
   Future<void> fetchSkills(String apiUrl) async {
     final List<SkillModel> list =
         await CustomSelectableRepo().getSkills(apiUrl);
@@ -59,6 +61,7 @@ class CustomSelectableViewModel extends ChangeNotifier {
     _selected.add(skillModel);
     _suggestions.removeWhere((skill) => skill.id == skillModel.id);
     _suggestions.sort(_sort);
+    countSelected = _selected.length;
     notifyListeners();
   }
 
