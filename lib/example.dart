@@ -11,9 +11,9 @@ class Home extends StatelessWidget {
         title: const Text("Example"),
       ),
       body: Container(
-        margin: const EdgeInsets.only(top: 20),
+        margin: const EdgeInsets.only(top: 10),
         child: CustomSelectable(
-          horizontalMargin: 20,
+          horizontalMargin: 10,
           apiUrl: "https://dev.elred.io/getSkills",
           selectedSills: (list) {
             for (var element in list) {

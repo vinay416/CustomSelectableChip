@@ -14,13 +14,20 @@ class CustomSelectableViewModel extends ChangeNotifier {
   int countSelected = 0;
 
   Future<void> fetchSkills(String apiUrl) async {
-    final List<SkillModel> list =
-        await CustomSelectableRepo().getSkills(apiUrl);
-    _allSkills.addAll(list);
-    if (_allSkills.isNotEmpty) {
-      _suggestions.addAll(_allSkills);
+    // final List<SkillModel> list =
+    //     await CustomSelectableRepo().getSkills(apiUrl);
+    // _allSkills.addAll(list);
+    // if (_allSkills.isNotEmpty) {
+    //   _suggestions.addAll(_allSkills);
+    // }
+
+    for (var i = 0; i < 11; i++) {
+      _allSkills.add(SkillModel(id: i.toString(), skill: "skill $i"));
     }
 
+    _suggestions.addAll(_allSkills);
+
+    await Future.delayed(Duration(seconds: 1));
     notifyListeners();
   }
 

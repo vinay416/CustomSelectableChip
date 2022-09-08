@@ -11,12 +11,8 @@ class TextFieldbuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // height: 40,
-      constraints: BoxConstraints(
-        // minWidth: 100,
-        maxWidth: MediaQuery.of(context).size.width,
-      ),
+    return SizedBox(
+      width: 390,
       child: TextField(
         focusNode: focus,
         controller: controller,

@@ -31,6 +31,7 @@ class CustomSelectable extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.symmetric(horizontal: horizontalMargin),
+      width: 390,
       child: Stack(
         clipBehavior: Clip.none,
         children: [

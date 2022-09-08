@@ -62,7 +62,7 @@ class _SelectedBuilderState extends State<SelectedBuilder> {
             curve: Curves.fastOutSlowIn,
           );
         }
-        
+
         return Container(
           decoration: BoxDecoration(
             border: boderDecoration,

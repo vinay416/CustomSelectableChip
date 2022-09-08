@@ -18,7 +18,6 @@ class SelectedChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: 22,
       margin: const EdgeInsets.only(right: 10),
       child: Chip(
         label: Text(
