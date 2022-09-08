@@ -10,10 +10,28 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Example"),
       ),
-      body: Container(
+      body: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          getSkill(),
+          Positioned(
+            top: 100,
+            child: SizedBox(
+              height: 90,
+              width: 390,
+              child: getSkill(),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget getSkill() {
+    return Flexible(
+      child: Container(
         margin: const EdgeInsets.only(top: 10),
         child: CustomSelectable(
-          horizontalMargin: 10,
           apiUrl: "https://dev.elred.io/getSkills",
           selectedSills: (list) {
             for (var element in list) {

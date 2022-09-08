@@ -27,7 +27,7 @@ class SuggestionBuilder extends StatelessWidget {
         return Positioned(
           top: 50,
           height: 90,
-          width: MediaQuery.of(context).size.width - (horizontalMargin * 2),
+          width: 390,
           child: Material(
             elevation: 5.0,
             child: Container(
@@ -37,22 +37,15 @@ class SuggestionBuilder extends StatelessWidget {
               ),
               alignment: Alignment.topLeft,
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              child: Scrollbar(
-                isAlwaysShown: true,
-                interactive: true,
-                child: SingleChildScrollView(
-                  child: Container(
-                    margin: const EdgeInsets.only(right: 50),
-                    child: Wrap(
-                      children: viewModel.suggestions
-                          .map((skill) => SuggestionChip(
-                                skill: skill,
-                                backgroundColor: backgroundColor,
-                                textStyle: textStyle,
-                              ))
-                          .toList(),
-                    ),
-                  ),
+              child: SingleChildScrollView(
+                child: Wrap(
+                  children: viewModel.suggestions
+                      .map((skill) => SuggestionChip(
+                            skill: skill,
+                            backgroundColor: backgroundColor,
+                            textStyle: textStyle,
+                          ))
+                      .toList(),
                 ),
               ),
             ),
