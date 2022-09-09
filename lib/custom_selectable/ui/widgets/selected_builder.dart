@@ -67,26 +67,31 @@ class _SelectedBuilderState extends State<SelectedBuilder> {
             border: boderDecoration,
             borderRadius: borderRadius,
           ),
-          child: SingleChildScrollView(
+          child: Scrollbar(
+            interactive: true,
             controller: _controller,
-            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                ...viewModel.selectedSkills
-                    .map((e) => SelectedChip(
-                          element: e,
-                          backgroundColor: widget.backgroundColor,
-                          textStyle: widget.textStyle,
-                        ))
-                    .toList(),
-                TextFieldbuilder(
-                  controller: _editingController,
-                  focus: _focus,
-                  hintText : widget.hinText,
-                  isEmpty : viewModel.selectedSkills.isEmpty,
-                ),
-              ],
+            scrollbarOrientation: ScrollbarOrientation.top,
+            child: SingleChildScrollView(
+              controller: _controller,
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  ...viewModel.selectedSkills
+                      .map((e) => SelectedChip(
+                            element: e,
+                            backgroundColor: widget.backgroundColor,
+                            textStyle: widget.textStyle,
+                          ))
+                      .toList(),
+                  TextFieldbuilder(
+                    controller: _editingController,
+                    focus: _focus,
+                    hintText: widget.hinText,
+                    isEmpty: viewModel.selectedSkills.isEmpty,
+                  ),
+                ],
+              ),
             ),
           ),
         );
