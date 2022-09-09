@@ -1,10 +1,9 @@
-import 'package:custom_chip/custom_selectable/model/skill_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class CustomSelectableRepo {
-  Future<List<SkillModel>> getSkills(String apiUrl) async {
+  Future<List<Map<String,dynamic>>> getSkills(String apiUrl) async {
     try {
       final response = await Dio().get(
         apiUrl,
@@ -14,13 +13,12 @@ class CustomSelectableRepo {
       );
       if (response.statusCode == 200) {
         final data = response.data;
-        final List<dynamic> skills = data["result"];
+        final List<Map<String,dynamic>> skills = data["result"];
         if (skills.isEmpty) {
           _showToast("Error : ${response.data["message"]}");
         }
-        final List<SkillModel> list =
-            skills.map((e) => SkillModel.fromJson(e)).toList();
-        return list;
+       
+        return skills;
       }
       _showToast("Error : ${response.statusCode}");
       return [];

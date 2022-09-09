@@ -1,3 +1,4 @@
+import 'package:custom_chip/custom_selectable/model/skill_model.dart';
 import 'package:custom_chip/custom_selectable/ui/custom_selectable_ui.dart';
 import 'package:custom_chip/custom_selectable/view_model/custom_selectable_view_model.dart';
 import 'package:custom_chip/custom_stack.dart';
@@ -45,14 +46,24 @@ class Home extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 10),
       child: CustomSelectable(
-         provider: CustomSelectableViewModel(),
-        apiUrl: "https://dev.elred.io/getSkills",
-        selectedSills: (list) {
+        rawDataList: getRaw(),
+        provider: CustomSelectableViewModel(),
+        selectedValues: (list) {
           for (var element in list) {
-            debugPrint(element.skill);
+            debugPrint(element.toString());
           }
         },
       ),
     );
+  }
+
+  List<Map<String, dynamic>> getRaw() {
+    List<Map<String, dynamic>> raw = [];
+
+    for (var i = 0; i < 11; i++) {
+      raw.add(SkillModel(id: i.toString(), skill: "skill $i").toJson());
+    }
+
+    return raw;
   }
 }

@@ -9,15 +9,13 @@ import 'package:provider/provider.dart';
 class SelectedBuilder extends StatefulWidget {
   const SelectedBuilder({
     required this.viewModel,
-    required this.selectedSills,
-    required this.apiUrl,
+    required this.selected,
     this.backgroundColor,
     this.textStyle,
     Key? key,
   }) : super(key: key);
   final CustomSelectableViewModel viewModel;
-  final Function(List<SkillModel>) selectedSills;
-  final String apiUrl;
+  final Function(List<Map<String, dynamic>>) selected;
   final Color? backgroundColor;
   final TextStyle? textStyle;
 
@@ -44,7 +42,7 @@ class _SelectedBuilderState extends State<SelectedBuilder> {
     return Consumer<CustomSelectableViewModel>(
       builder: (context, viewModel, child) {
         if (viewModel.selectedSkills.isNotEmpty) {
-          widget.selectedSills(viewModel.selectedSkills);
+          widget.selected(viewModel.selectedSkillsJson);
         }
 
         if (_controller.hasClients &&

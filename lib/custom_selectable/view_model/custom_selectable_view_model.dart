@@ -1,5 +1,4 @@
 import 'package:custom_chip/custom_selectable/model/skill_model.dart';
-import 'package:custom_chip/custom_selectable/web_services/custom_selectable_repo.dart';
 import 'package:flutter/cupertino.dart';
 
 class CustomSelectableViewModel extends ChangeNotifier {
@@ -13,14 +12,7 @@ class CustomSelectableViewModel extends ChangeNotifier {
 
   int countSelected = 0;
 
-  Future<void> fetchSkills(String apiUrl) async {
-    // final List<SkillModel> list =
-    //     await CustomSelectableRepo().getSkills(apiUrl);
-    // _allSkills.addAll(list);
-    // if (_allSkills.isNotEmpty) {
-    //   _suggestions.addAll(_allSkills);
-    // }
-
+  Future<void> fetchSkills(List<Map<String, dynamic>> rawDataList) async {
     for (var i = 0; i < 11; i++) {
       _allSkills.add(SkillModel(id: i.toString(), skill: "skill $i"));
     }
@@ -80,6 +72,14 @@ class CustomSelectableViewModel extends ChangeNotifier {
   }
 
   List<SkillModel> get selectedSkills => List.unmodifiable(_selected);
+
+  List<Map<String, dynamic>> get selectedSkillsJson {
+    final List<Map<String, dynamic>> list = [];
+
+    list.addAll(_selected.map((e) => e.toJson()));
+
+    return list;
+  }
 
   int _sort(SkillModel a, SkillModel b) {
     return a.skill
