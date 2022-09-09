@@ -70,7 +70,7 @@ class _SelectedBuilderState extends State<SelectedBuilder> {
           child: Scrollbar(
             interactive: true,
             controller: _controller,
-            scrollbarOrientation: ScrollbarOrientation.top,
+            scrollbarOrientation: ScrollbarOrientation.bottom,
             child: SingleChildScrollView(
               controller: _controller,
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
