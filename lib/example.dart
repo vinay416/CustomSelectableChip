@@ -1,4 +1,5 @@
 import 'package:custom_chip/custom_selectable/ui/custom_selectable_ui.dart';
+import 'package:custom_chip/custom_selectable/view_model/custom_selectable_view_model.dart';
 import 'package:custom_chip/custom_stack.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_pointer/transparent_pointer.dart';
@@ -44,6 +45,7 @@ class Home extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 10),
       child: CustomSelectable(
+         provider: CustomSelectableViewModel(),
         apiUrl: "https://dev.elred.io/getSkills",
         selectedSills: (list) {
           for (var element in list) {

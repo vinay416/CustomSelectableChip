@@ -10,6 +10,7 @@ class CustomSelectable extends StatelessWidget {
   const CustomSelectable({
     required this.selectedSills,
     required this.apiUrl,
+    required this.provider,
     this.horizontalMargin = 0,
     this.backgroundColor,
     this.deleteIcon,
@@ -24,33 +25,34 @@ class CustomSelectable extends StatelessWidget {
   final TextStyle? textStyle;
   final Color? deleteIconColor;
   final IconData? deleteIcon;
+  final CustomSelectableViewModel provider;
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<CustomSelectableViewModel>();
-    viewModel.fetchSkills(apiUrl);
-
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: horizontalMargin),
-      width: 390,
-      child: Stack2(
-        children: [
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-          ),
-          SelectedBuilder(
-            viewModel: viewModel,
-            apiUrl: apiUrl,
-            selectedSills: selectedSills,
-            backgroundColor: backgroundColor,
-            textStyle: textStyle,
-          ),
-          SuggestionBuilder(
-            horizontalMargin: horizontalMargin,
-            backgroundColor: backgroundColor,
-            textStyle: textStyle,
-          ),
-        ],
+    return ChangeNotifierProvider<CustomSelectableViewModel>(
+      create: (context) => provider..fetchSkills(apiUrl),
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: horizontalMargin),
+        width: 390,
+        child: Stack2(
+          children: [
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+            ),
+            SelectedBuilder(
+              viewModel: provider,
+              apiUrl: apiUrl,
+              selectedSills: selectedSills,
+              backgroundColor: backgroundColor,
+              textStyle: textStyle,
+            ),
+            SuggestionBuilder(
+              horizontalMargin: horizontalMargin,
+              backgroundColor: backgroundColor,
+              textStyle: textStyle,
+            ),
+          ],
+        ),
       ),
     );
   }

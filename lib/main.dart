@@ -12,11 +12,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => CustomSelectableViewModel(),
-      child: const MaterialApp(
-        home: Home(),
-      ),
+    return const MaterialApp(
+      home: Home(),
     );
   }
 }
