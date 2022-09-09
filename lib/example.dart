@@ -1,5 +1,7 @@
 import 'package:custom_chip/custom_selectable/ui/custom_selectable_ui.dart';
+import 'package:custom_chip/custom_stack.dart';
 import 'package:flutter/material.dart';
+import 'package:transparent_pointer/transparent_pointer.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,35 +12,44 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Example"),
       ),
-      body: Stack(
-        clipBehavior: Clip.none,
+      body: Stack2(
         children: [
-          getSkill(),
           Positioned(
             top: 100,
-            child: SizedBox(
-              height: 90,
+            child: Container(
+              color: Colors.black,
+              height: 100,
               width: 390,
+              child: InkWell(
+                // onTap: () => print("black"),
+                child: getSkill(),
+              ),
+            ),
+          ),
+          Container(
+            color: Colors.red,
+            height: 100,
+            width: 390,
+            child: InkWell(
+              // onTap: () => print("red"),
               child: getSkill(),
             ),
-          )
+          ),
         ],
       ),
     );
   }
 
   Widget getSkill() {
-    return Flexible(
-      child: Container(
-        margin: const EdgeInsets.only(top: 10),
-        child: CustomSelectable(
-          apiUrl: "https://dev.elred.io/getSkills",
-          selectedSills: (list) {
-            for (var element in list) {
-              debugPrint(element.skill);
-            }
-          },
-        ),
+    return Container(
+      margin: const EdgeInsets.only(top: 10),
+      child: CustomSelectable(
+        apiUrl: "https://dev.elred.io/getSkills",
+        selectedSills: (list) {
+          for (var element in list) {
+            debugPrint(element.skill);
+          }
+        },
       ),
     );
   }

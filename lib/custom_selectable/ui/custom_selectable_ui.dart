@@ -2,6 +2,7 @@ import 'package:custom_chip/custom_selectable/model/skill_model.dart';
 import 'package:custom_chip/custom_selectable/ui/widgets/selected_builder.dart';
 import 'package:custom_chip/custom_selectable/ui/widgets/suggestion_builder.dart';
 import 'package:custom_chip/custom_selectable/view_model/custom_selectable_view_model.dart';
+import 'package:custom_chip/custom_stack.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -32,8 +33,7 @@ class CustomSelectable extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: horizontalMargin),
       width: 390,
-      child: Stack(
-        clipBehavior: Clip.none,
+      child: Stack2(
         children: [
           GestureDetector(
             behavior: HitTestBehavior.opaque,
