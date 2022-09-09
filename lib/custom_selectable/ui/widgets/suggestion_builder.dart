@@ -6,13 +6,11 @@ import 'package:provider/provider.dart';
 
 class SuggestionBuilder extends StatelessWidget {
   const SuggestionBuilder({
-    required this.horizontalMargin,
     this.backgroundColor,
     this.textStyle,
     Key? key,
   }) : super(key: key);
 
-  final double horizontalMargin;
   final Color? backgroundColor;
   final TextStyle? textStyle;
 
