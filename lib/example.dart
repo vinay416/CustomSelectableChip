@@ -1,6 +1,6 @@
 import 'package:custom_chip/custom_selectable/model/skill_model.dart';
 import 'package:custom_chip/custom_selectable/ui/custom_selectable_ui.dart';
-import 'package:custom_chip/custom_stack.dart';
+import 'package:custom_chip/custom_selectable/custom_stack.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
