@@ -19,6 +19,7 @@ class SubjectsWidget extends StatelessWidget {
         }
         return CustomSelectable(
           rawDataList: value.rawDataList,
+          hinText: "Add your subjects",
           selectedValues: (list) {
             for (var element in list) {
               debugPrint(element.toString());

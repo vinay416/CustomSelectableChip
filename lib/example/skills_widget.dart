@@ -19,6 +19,7 @@ class SkillsWidget extends StatelessWidget {
         }
         return CustomSelectable(
           rawDataList: value.rawDataList,
+          hinText: "Add your skills",
           selectedValues: (list) {
             for (var element in list) {
               debugPrint(element.toString());

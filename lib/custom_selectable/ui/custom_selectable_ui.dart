@@ -11,12 +11,14 @@ class CustomSelectable extends StatefulWidget {
     required this.rawDataList,
     this.backgroundColor,
     this.textStyle,
+    this.hinText,
     Key? key,
   }) : super(key: key);
   final Function(List<Map<String, dynamic>>) selectedValues;
   final List<Map<String, dynamic>> rawDataList;
   final Color? backgroundColor;
   final TextStyle? textStyle;
+  final String? hinText;
 
   @override
   State<CustomSelectable> createState() => _CustomSelectableState();
@@ -38,6 +40,7 @@ class _CustomSelectableState extends State<CustomSelectable> {
               selected: widget.selectedValues,
               backgroundColor: widget.backgroundColor,
               textStyle: widget.textStyle,
+              hinText: widget.hinText,
             ),
             SuggestionBuilder(
               backgroundColor: widget.backgroundColor,

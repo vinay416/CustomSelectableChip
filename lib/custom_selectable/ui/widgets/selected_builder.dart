@@ -11,12 +11,14 @@ class SelectedBuilder extends StatefulWidget {
     required this.selected,
     this.backgroundColor,
     this.textStyle,
+    this.hinText,
     Key? key,
   }) : super(key: key);
   final CustomSelectableViewModel viewModel;
   final Function(List<Map<String, dynamic>>) selected;
   final Color? backgroundColor;
   final TextStyle? textStyle;
+  final String? hinText;
 
   @override
   State<SelectedBuilder> createState() => _SelectedBuilderState();
@@ -81,6 +83,8 @@ class _SelectedBuilderState extends State<SelectedBuilder> {
                 TextFieldbuilder(
                   controller: _editingController,
                   focus: _focus,
+                  hintText : widget.hinText,
+                  isEmpty : viewModel.selectedSkills.isEmpty,
                 ),
               ],
             ),

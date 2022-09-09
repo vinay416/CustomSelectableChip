@@ -19,6 +19,7 @@ class HobbiesWidget extends StatelessWidget {
         }
         return CustomSelectable(
           rawDataList: value.rawDataList,
+          hinText: "Add your hobbies",
           selectedValues: (list) {
             for (var element in list) {
               debugPrint(element.toString());
