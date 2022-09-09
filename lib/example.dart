@@ -56,7 +56,7 @@ class Home extends StatelessWidget {
     List<Map<String, dynamic>> raw = [];
 
     for (var i = 0; i < 11; i++) {
-      raw.add(SkillModel(id: i.toString(), skill: "skill $i").toJson());
+      raw.add(DataModel(id: i.toString(), value: "skill $i").toJson());
     }
 
     return raw;

@@ -28,7 +28,7 @@ class _CustomSelectableState extends State<CustomSelectable> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<CustomSelectableViewModel>(
-      create: (context) => provider..fetchSkills(widget.rawDataList),
+      create: (context) => provider..parseData(widget.rawDataList),
       child: SizedBox(
         width: 390,
         child: Stack2(

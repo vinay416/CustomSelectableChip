@@ -11,7 +11,7 @@ class SelectedChip extends StatelessWidget {
     this.textStyle,
     Key? key,
   }) : super(key: key);
-  final SkillModel element;
+  final DataModel element;
   final Color? backgroundColor;
   final TextStyle? textStyle;
 
@@ -21,7 +21,7 @@ class SelectedChip extends StatelessWidget {
       margin: const EdgeInsets.only(right: 10),
       child: Chip(
         label: Text(
-          element.skill,
+          element.value,
           style: textStyle ?? chipTextStyle,
         ),
         backgroundColor: backgroundColor ?? chipBackgroundColor,

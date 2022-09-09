@@ -11,7 +11,7 @@ class SuggestionChip extends StatelessWidget {
     this.textStyle,
     Key? key,
   }) : super(key: key);
-  final SkillModel skill;
+  final DataModel skill;
   final Color? backgroundColor;
   final TextStyle? textStyle;
 
@@ -25,7 +25,7 @@ class SuggestionChip extends StatelessWidget {
         },
         child: Chip(
           label: Text(
-            skill.skill,
+            skill.value,
             style: textStyle ?? chipTextStyle,
           ),
           shape: chipBorder,

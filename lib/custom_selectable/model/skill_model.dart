@@ -1,20 +1,20 @@
-class SkillModel {
-  const SkillModel({
+class DataModel {
+  const DataModel({
     required this.id,
-    required this.skill,
+    required this.value,
   });
 
   final String id;
-  final String skill;
+  final String value;
 
-  factory SkillModel.fromJson(Map<String, dynamic> json) {
-    return SkillModel(
+  factory DataModel.fromJson(Map<String, dynamic> json) {
+    return DataModel(
       id: json["_id"],
-      skill: json["value"],
+      value: json["value"],
     );
   }
 
   Map<String, dynamic> toJson() {
-    return {"_id": id, "value": skill};
+    return {"_id": id, "value": value};
   }
 }

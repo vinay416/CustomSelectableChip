@@ -2,24 +2,24 @@ import 'package:custom_chip/custom_selectable/model/skill_model.dart';
 import 'package:flutter/cupertino.dart';
 
 class CustomSelectableViewModel extends ChangeNotifier {
-  final List<SkillModel> _allSkills = [];
+  final List<DataModel> _allSkills = [];
 
-  final List<SkillModel> _suggestions = [];
+  final List<DataModel> _suggestions = [];
 
-  final List<SkillModel> _selected = [];
+  final List<DataModel> _selected = [];
 
   bool isFocused = false;
 
   int countSelected = 0;
 
-  Future<void> fetchSkills(List<Map<String, dynamic>> rawDataList) async {
-    for (var i = 0; i < 11; i++) {
-      _allSkills.add(SkillModel(id: i.toString(), skill: "skill $i"));
-    }
+  Future<void> parseData(List<Map<String, dynamic>> rawDataList) async {
+    final modelList = rawDataList.map((e) => DataModel.fromJson(e)).toList();
+
+    _allSkills.addAll(modelList);
 
     _suggestions.addAll(_allSkills);
 
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(Duration.zero);
     notifyListeners();
   }
 
@@ -35,12 +35,12 @@ class CustomSelectableViewModel extends ChangeNotifier {
       final String query = text.toLowerCase();
 
       final suggestion = _allSkills
-          .where((element) => element.skill.toLowerCase().contains(query))
+          .where((element) => element.value.toLowerCase().contains(query))
           .toList(growable: false)
-        ..sort((a, b) => a.skill
+        ..sort((a, b) => a.value
             .toLowerCase()
             .indexOf(query)
-            .compareTo(b.skill.toLowerCase().indexOf(query)));
+            .compareTo(b.value.toLowerCase().indexOf(query)));
 
       for (var skill in suggestion) {
         _suggestions.add(skill);
@@ -54,9 +54,9 @@ class CustomSelectableViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<SkillModel> get suggestions => List.unmodifiable(_suggestions);
+  List<DataModel> get suggestions => List.unmodifiable(_suggestions);
 
-  void addSkill(SkillModel skillModel) {
+  void addSkill(DataModel skillModel) {
     _selected.add(skillModel);
     _suggestions.removeWhere((skill) => skill.id == skillModel.id);
     _suggestions.sort(_sort);
@@ -64,14 +64,14 @@ class CustomSelectableViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteSkill(SkillModel skillModel) {
+  void deleteSkill(DataModel skillModel) {
     _selected.removeWhere((skill) => skill.id == skillModel.id);
     _suggestions.add(skillModel);
     _suggestions.sort(_sort);
     notifyListeners();
   }
 
-  List<SkillModel> get selectedSkills => List.unmodifiable(_selected);
+  List<DataModel> get selectedSkills => List.unmodifiable(_selected);
 
   List<Map<String, dynamic>> get selectedSkillsJson {
     final List<Map<String, dynamic>> list = [];
@@ -81,11 +81,11 @@ class CustomSelectableViewModel extends ChangeNotifier {
     return list;
   }
 
-  int _sort(SkillModel a, SkillModel b) {
-    return a.skill
+  int _sort(DataModel a, DataModel b) {
+    return a.value
         .toLowerCase()
-        .indexOf(b.skill)
-        .compareTo(b.skill.toLowerCase().indexOf(a.skill));
+        .indexOf(b.value)
+        .compareTo(b.value.toLowerCase().indexOf(a.value));
   }
 
   void focusListener(bool value) {
