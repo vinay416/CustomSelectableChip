@@ -4,7 +4,7 @@ import 'package:custom_chip/custom_selectable/view_model/custom_selectable_view_
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SuggestionBuilder extends StatelessWidget {
+class SuggestionBuilder extends StatefulWidget {
   const SuggestionBuilder({
     this.backgroundColor,
     this.textStyle,
@@ -13,6 +13,13 @@ class SuggestionBuilder extends StatelessWidget {
 
   final Color? backgroundColor;
   final TextStyle? textStyle;
+
+  @override
+  State<SuggestionBuilder> createState() => _SuggestionBuilderState();
+}
+
+class _SuggestionBuilderState extends State<SuggestionBuilder> {
+  final ScrollController scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +44,16 @@ class SuggestionBuilder extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               child: Scrollbar(
                 isAlwaysShown: true,
+                controller: scrollController,
                 interactive: true,
                 child: SingleChildScrollView(
+                  controller: scrollController,
                   child: Wrap(
                     children: viewModel.suggestions
                         .map((skill) => SuggestionChip(
                               skill: skill,
-                              backgroundColor: backgroundColor,
-                              textStyle: textStyle,
+                              backgroundColor: widget.backgroundColor,
+                              textStyle: widget.textStyle,
                             ))
                         .toList(),
                   ),
