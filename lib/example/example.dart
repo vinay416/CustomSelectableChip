@@ -16,36 +16,34 @@ class Home extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(8),
-          child: Expanded(
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                Stack2(
-                  children: const [
-                    Positioned(
-                      top: 200,
-                      child: SubjectsWidget(),
-                    ),
-                    Positioned(
-                      top: 100,
-                      child: HobbiesWidget(),
-                    ),
-                    SkillsWidget(),
-                  ],
-                ),
-                const SizedBox(
-                  height: 300,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    FocusScope.of(context).unfocus();
-                  },
-                  child: const Text("Done"),
-                ),
-              ],
-            ),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              Stack2(
+                children: const [
+                  Positioned(
+                    top: 200,
+                    child: SubjectsWidget(),
+                  ),
+                  Positioned(
+                    top: 100,
+                    child: HobbiesWidget(),
+                  ),
+                  SkillsWidget(),
+                ],
+              ),
+              const SizedBox(
+                height: 300,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  FocusScope.of(context).unfocus();
+                },
+                child: const Text("Done"),
+              ),
+            ],
           ),
         ),
       ),
