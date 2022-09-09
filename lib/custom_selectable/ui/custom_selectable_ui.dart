@@ -13,8 +13,6 @@ class CustomSelectable extends StatelessWidget {
     required this.provider,
     this.horizontalMargin = 0,
     this.backgroundColor,
-    this.deleteIcon,
-    this.deleteIconColor,
     this.textStyle,
     Key? key,
   }) : super(key: key);
@@ -23,8 +21,6 @@ class CustomSelectable extends StatelessWidget {
   final String apiUrl;
   final Color? backgroundColor;
   final TextStyle? textStyle;
-  final Color? deleteIconColor;
-  final IconData? deleteIcon;
   final CustomSelectableViewModel provider;
 
   @override
