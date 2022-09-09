@@ -1,5 +1,5 @@
-import 'package:custom_chip/custom_selectable/view_model/custom_selectable_view_model.dart';
-import 'package:custom_chip/example.dart';
+import 'package:custom_chip/custom_selectable/web_services/custom_selectable_repo.dart';
+import 'package:custom_chip/example/example.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,8 +12,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Home(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<SkillsRepo>(
+          create: (context) =>
+              SkillsRepo()..getRawData("https://dev.elred.io/getSkills"),
+        ),
+        ChangeNotifierProvider<HobbiesRepo>(
+          create: (context) =>
+              HobbiesRepo()..getRawData("https://dev.elred.io/getHobbies"),
+        ),
+        ChangeNotifierProvider<SubjectsRepo>(
+          create: (context) =>
+              SubjectsRepo()..getRawData("https://dev.elred.io/getSubjects"),
+        )
+      ],
+      child: const MaterialApp(
+        home: Home(),
+      ),
     );
   }
 }

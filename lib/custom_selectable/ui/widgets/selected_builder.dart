@@ -1,4 +1,3 @@
-import 'package:custom_chip/custom_selectable/model/skill_model.dart';
 import 'package:custom_chip/custom_selectable/utils/utlis.dart';
 import 'package:custom_chip/custom_selectable/ui/widgets/selected_chip.dart';
 import 'package:custom_chip/custom_selectable/ui/widgets/textfield_builder.dart';

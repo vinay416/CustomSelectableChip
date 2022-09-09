@@ -2,8 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class CustomSelectableRepo {
-  Future<List<Map<String,dynamic>>> getSkills(String apiUrl) async {
+abstract class CustomSelectableRepo extends ChangeNotifier {
+  final List<Map<String, dynamic>> rawDataList = [];
+
+  Future<void> getRawData(String apiUrl) async {
     try {
       final response = await Dio().get(
         apiUrl,
@@ -13,20 +15,28 @@ class CustomSelectableRepo {
       );
       if (response.statusCode == 200) {
         final data = response.data;
-        final List<Map<String,dynamic>> skills = data["result"];
+        final List skills = data["result"];
         if (skills.isEmpty) {
           _showToast("Error : ${response.data["message"]}");
         }
-       
-        return skills;
+
+        List<Map<String, dynamic>> list = skills.map((e) {
+          final Map<String, dynamic> map = {
+            "_id": e["_id"],
+            "value": e["value"]
+          };
+
+          return map;
+        }).toList();
+
+        rawDataList.addAll(list);
+
+        notifyListeners();
       }
-      _showToast("Error : ${response.statusCode}");
-      return [];
     } on Exception catch (e) {
       debugPrint(e.toString());
       _showToast("Error : $e");
     }
-    return [];
   }
 
   Map<String, dynamic> get _authHeader {
@@ -37,9 +47,15 @@ class CustomSelectableRepo {
   }
 
   final String _token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiclhnY1Y2YXh3eVRobTNQdE04aGtSaXJTQ2ZsMiIsImlhdCI6MTY2MjU1MTgwOCwiZXhwIjoxNjYyNjM4MjA4fQ.RGJM_0Iqfcq-WZi6Kqtj25eso5t7sdoDxUBjRySGoLI";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiclhnY1Y2YXh3eVRobTNQdE04aGtSaXJTQ2ZsMiIsImlhdCI6MTY2MjcwNzY1MCwiZXhwIjoxNjYyNzk0MDUwfQ.N8s_lU9kEQy6yusGo5NCWFolZzgZnVxYBHrjQLKKOtA";
 
   void _showToast(String message) {
     Fluttertoast.showToast(msg: message);
   }
 }
+
+class SkillsRepo extends CustomSelectableRepo {}
+
+class HobbiesRepo extends CustomSelectableRepo {}
+
+class SubjectsRepo extends CustomSelectableRepo {}
